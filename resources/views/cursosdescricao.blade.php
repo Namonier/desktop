@@ -1,243 +1,158 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<x-layout>
+    <x-slot:styles>
+        <style>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            .curso-header {
+                margin-bottom: 2rem;
+                text-align: center;
+            }
 
-    <title>Curso de Iniciação Musical - Casa do Piano</title>
+            .curso-header h1 {
+                font-size: 2.8rem;
+                font-weight: 700;
+                color: var(--cor-secundaria);
+                line-height: 1.2;
+            }
 
-    <link rel="shortcut icon" href="apple-icon-180x180.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- ESTILOS GERAIS E MOBILE (MOBILE FIRST) --- */
-        :root {
-            --cor-principal: #8a2be2;
-            --cor-secundaria: #4b0082;
-            --cor-fundo: #f4f4f9;
-            --cor-texto: #333;
-            --cor-branco: #fff;
-            --sombra-card: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --borda-radius: 8px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--cor-fundo); color: var(--cor-texto); -webkit-font-smoothing: antialiased; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* --- HEADER E NAVEGAÇÃO (Padrão do site) --- */
-        .cabecalho-mobile { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background-color: var(--cor-branco); box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 999; }
-        .cabecalho-mobile h1 { font-size: 1.25rem; color: var(--cor-principal); }
-        .logo { width: 40px; height: 40px; border-radius: 50%; }
-        .menu-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
-        .menu-btn span { display: block; width: 25px; height: 3px; background-color: var(--cor-texto); }
-        .menu-lateral { position: fixed; top: 0; left: 0; width: 250px; height: 100vh; background-color: var(--cor-branco); box-shadow: 2px 0 10px rgba(0,0,0,0.1); transform: translateX(-100%); transition: transform 0.3s ease-in-out; z-index: 1000; display: flex; flex-direction: column; }
-        .menu-lateral.aberto { transform: translateX(0); }
-        .menu-lateral-cabecalho { display: flex; align-items: center; padding: 1rem; border-bottom: 1px solid #eee; }
-        .logo-link { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.1rem; color: var(--cor-principal); }
-        #fechar-menu-btn { background: none; border: none; cursor: pointer; margin-left: auto; color: var(--cor-texto); }
-        .menu-lateral ul { padding: 1rem; }
-        .menu-lateral ul a { display: block; padding: 0.8rem; border-radius: var(--borda-radius); transition: background-color 0.2s, color 0.2s; }
-        .menu-lateral ul a:hover { background-color: var(--cor-fundo); color: var(--cor-principal); }
-
-        /* --- CONTEÚDO PRINCIPAL (Estilos base) --- */
-        main {
-            padding: 1rem;
-        }
-
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ✨✨✨ NOVOS ESTILOS PARA A PÁGINA DE DESCRIÇÃO DO CURSO ✨✨✨ */
-        .curso-header {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .curso-header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--cor-secundaria);
-            line-height: 1.2;
-        }
-
-        .curso-header p {
-            font-size: 1.2rem;
-            color: #555;
-            margin-top: 0.5rem;
-        }
-        
-        .curso-detalhe-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Uma coluna no mobile */
-            gap: 2rem;
-        }
-
-        /* Caixa de informações principal */
-        .curso-info-box {
-            background-color: var(--cor-branco);
-            padding: 1.5rem;
-            border-radius: var(--borda-radius);
-            box-shadow: var(--sombra-card);
-        }
-
-        .curso-info-box img {
-            width: 100%;
-            border-radius: var(--borda-radius);
-            margin-bottom: 1.5rem;
-        }
-
-        .info-box-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        .info-box-item:last-child {
-            border-bottom: none;
-        }
-        .info-box-item svg {
-            fill: var(--cor-principal);
-        }
-        
-        .btn-inscricao {
-            display: block;
-            width: 100%;
-            background-color: var(--cor-principal);
-            color: var(--cor-branco);
-            text-align: center;
-            padding: 1rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: var(--borda-radius);
-            margin-top: 1.5rem;
-            transition: background-color 0.3s ease;
-        }
-        .btn-inscricao:hover {
-            background-color: var(--cor-secundaria);
-        }
-        
-        /* Conteúdo detalhado do curso */
-        .curso-conteudo .curso-secao-detalhada {
-            background-color: var(--cor-branco);
-            padding: 2rem;
-            border-radius: var(--borda-radius);
-            box-shadow: var(--sombra-card);
-            margin-bottom: 2rem;
-        }
-
-        .curso-conteudo h2 {
-            font-size: 1.8rem;
-            color: var(--cor-secundaria);
-            margin-bottom: 1rem;
-        }
-
-        .curso-conteudo p, .curso-conteudo li {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .curso-conteudo ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .curso-conteudo ul li {
-            padding-left: 1.75rem;
-            position: relative;
-            margin-bottom: 0.75rem;
-        }
-        .curso-conteudo ul li::before {
-            content: '🎵';
-            color: var(--cor-principal);
-            position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-        }
-
-        .instructor-card {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            background-color: var(--cor-fundo);
-            padding: 1.5rem;
-            border-radius: var(--borda-radius);
-            margin-top: 1.5rem;
-        }
-        .instructor-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .instructor-card h4 {
-            margin-bottom: 0.25rem;
-            font-size: 1.2rem;
-        }
-
-        /* --- RODAPÉ --- */
-        .rodape { background-color: #333; color: var(--cor-branco); text-align: center; padding: 2rem 1rem; font-size: 0.9rem; margin-top: 2rem;}
-        .rodape p { margin-bottom: 0.5rem; }
-
-        /* --- VERSÃO DESKTOP --- */
-        @media (min-width: 1024px) {
-            .cabecalho-mobile { display: none; }
-            .menu-lateral { width: 100%; height: 70px; position: fixed; transform: translateX(0); flex-direction: row; justify-content: space-between; align-items: center; padding: 0 2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-            .menu-lateral-cabecalho { border: none; padding: 0; }
-            #fechar-menu-btn { display: none; }
-            .menu-lateral ul { display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 0; }
-            .menu-lateral ul a { padding: 0.5rem 1rem; font-weight: 500; }
-            .menu-lateral ul a:hover { background-color: transparent; color: var(--cor-principal); }
-            main { padding-top: 120px; } /* Aumenta o espaço para o título */
-            .main-container { padding: 2rem; }
-
+            .curso-header p {
+                font-size: 1.2rem;
+                color: #555;
+                margin-top: 0.5rem;
+            }
+            
             .curso-detalhe-grid {
-                grid-template-columns: 350px 1fr; /* Coluna da esquerda fixa, direita flexível */
-                align-items: flex-start;
+                display: grid;
+                grid-template-columns: 1fr; /* Uma coluna no mobile */
+                gap: 2rem;
             }
 
-            /* Efeito de "sidebar fixa" */
+            /* Caixa de informações principal */
             .curso-info-box {
-                position: sticky;
-                top: 120px; /* Distância do topo = padding-top do main */
+                background-color: var(--cor-branco);
+                padding: 1.5rem;
+                border-radius: var(--borda-radius);
+                box-shadow: var(--sombra-card);
             }
-        }
-    </style>
-</head>
 
-<body>
-    <nav class="menu-lateral">
-        <div class="menu-lateral-cabecalho">
-            <a href="index.html" class="logo-link"><img src="logo_casa_do_piano.jpeg" alt="Logo Casa do Piano" class="logo"><span class="logo-texto">Casa do Piano</span></a>
-            <button id="fechar-menu-btn" aria-label="Fechar menu"></button>
-        </div>
-        <ul>
-            <li><a href="{{ route('inicial') }}">Início</a></li>
-            <li><a href="{{ route('agendacultural') }}">Agenda Cultural</a></li>
-            <li><a href="{{ route('blog') }}">Blog</a></li>
-            <li><a href="{{ route('cursos') }}">Cursos</a></li>
-            <li><a href="{{ route('galeria') }}">Galeria</a></li>
-            <li><a href="{{ route('loja') }}">Loja</a></li>
-            <li><a href="{{ route('parceiros') }}">Parceiros</a></li>
-            <li><a href="{{ route('servicos') }}">Serviços</a></li>
-            <li><a href="{{ route('sobre') }}">Sobre</a></li>
-        </ul>
-    </nav>
-    <header class="cabecalho-mobile">
-        <button class="menu-btn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
-        <h1>Casa do Piano</h1>
-        <a href="index.html" class="logo-link-mobile" aria-label="Voltar para a página inicial"><img src="logo_casa_do_piano.jpeg" alt="Logo da Casa do Piano" class="logo"></a>
-    </header>
+            .curso-info-box img {
+                width: 100%;
+                border-radius: var(--borda-radius);
+                margin-bottom: 1.5rem;
+            }
 
-    <main>
-        <div class="main-container">
+            .info-box-item {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                border-bottom: 1px solid #eee;
+            }
+            .info-box-item:last-child {
+                border-bottom: none;
+            }
+            .info-box-item svg {
+                fill: var(--cor-principal);
+            }
+            
+            .btn-inscricao {
+                display: block;
+                width: 100%;
+                background-color: var(--cor-principal);
+                color: var(--cor-branco);
+                text-align: center;
+                padding: 1rem;
+                font-size: 1.2rem;
+                font-weight: 600;
+                border-radius: var(--borda-radius);
+                margin-top: 1.5rem;
+                transition: background-color 0.3s ease;
+            }
+            .btn-inscricao:hover {
+                background-color: var(--cor-secundaria);
+            }
+            
+            /* Conteúdo detalhado do curso */
+            .curso-conteudo .curso-secao-detalhada {
+                background-color: var(--cor-branco);
+                padding: 2rem;
+                border-radius: var(--borda-radius);
+                box-shadow: var(--sombra-card);
+                margin-bottom: 2rem;
+            }
+
+            .curso-conteudo h2 {
+                font-size: 1.8rem;
+                color: var(--cor-secundaria);
+                margin-bottom: 1rem;
+            }
+
+            .curso-conteudo p, .curso-conteudo li {
+                font-size: 1rem;
+                line-height: 1.8;
+                color: #555;
+            }
+
+            .curso-conteudo ul {
+                list-style: none;
+                padding-left: 0;
+            }
+            .curso-conteudo ul li {
+                padding-left: 1.75rem;
+                position: relative;
+                margin-bottom: 0.75rem;
+            }
+            .curso-conteudo ul li::before {
+                content: '🎵';
+                color: var(--cor-principal);
+                position: absolute;
+                left: 0;
+                font-size: 1.2rem;
+            }
+
+            .instructor-card {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                background-color: var(--cor-fundo);
+                padding: 1.5rem;
+                border-radius: var(--borda-radius);
+                margin-top: 1.5rem;
+            }
+            .instructor-card img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            .instructor-card h4 {
+                margin-bottom: 0.25rem;
+                font-size: 1.2rem;
+            }
+            .instructor-card p {
+                font-size: 0.9rem;
+                color: #555;
+            }
+
+            @media (min-width: 1024px) {
+                main { padding-top: 120px; } /* Aumenta o espaço para o título */
+                .main-container { padding: 2rem; }
+
+                .curso-detalhe-grid {
+                    grid-template-columns: 350px 1fr; /* Coluna da esquerda fixa, direita flexível */
+                    align-items: flex-start;
+                }
+
+                /* Efeito de "sidebar fixa" */
+                .curso-info-box {
+                    position: sticky;
+                    top: 120px; /* Distância do topo = padding-top do main */
+                }
+            }
+
+        </style>
+    </x-slot:styles>
+
+    <div class="main-container">
             <header class="curso-header">
                 <h1>Curso de Iniciação Musical</h1>
                 <p>O primeiro passo para a sua jornada no mundo da música.</p>
@@ -298,24 +213,5 @@
                 </div>
             </div>
         </div>
-    </main>
 
-    <footer class="rodape">
-        <p><strong>Casa do Piano - Mossoró</strong></p>
-        <p>Rua Joaquim Bruno Mota, 58 Bairro Abolição, Mossoró</p>
-        <p>Email: casadopianomossoro@gmail.com</p>
-        <p>WhatsApp: (84) 98737-9538</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.querySelector('.menu-btn');
-            const fecharMenuBtn = document.querySelector('#fechar-menu-btn');
-            const menuLateral = document.querySelector('.menu-lateral');
-            if (menuBtn && menuLateral) { menuBtn.addEventListener('click', () => { menuLateral.classList.add('aberto'); }); }
-            if (fecharMenuBtn && menuLateral) { fecharMenuBtn.addEventListener('click', () => { menuLateral.classList.remove('aberto'); }); }
-        });
-    </script>
-</body>
-
-</html>
+</x-layout>

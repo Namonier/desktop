@@ -53,4 +53,3 @@ Route::get('/sobre-casa-do-piano', function () {
 Route::get('/serviços', function () {
     return view('servicos');
 })->name('servicos');
-

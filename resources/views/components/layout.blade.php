@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Casa do Piano - Cursos</title>
+    <title>Casa do Piano</title>
 
     <link rel="shortcut icon" href="apple-icon-180x180.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+
+        /* Estilos para o botão de voltar */
+        #fechar-menu-btn {
+            /* Define a largura e altura do botão */
+            width: 35px;
+            height: 35px;
+
+            /* Opcional: Centraliza a imagem se ela for menor que o botão */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* Estilos básicos para o botão (você pode ajustar ou remover) */
+            background-color: transparent; /* Fundo transparente */
+            border: none; /* Sem borda */
+            padding: 0; /* Remove padding padrão */
+            cursor: pointer; /* Indica que é clicável */
+            border-radius: 5px; /* Bordas levemente arredondadas */
+            /* Você pode adicionar um 'hover' para feedback visual: */
+            /* &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+            } */
+        }
+
+        /* Estilos para a imagem dentro do botão */
+        #fechar-menu-btn img {
+            /* Define a largura e altura da imagem para preencher o botão */
+            width: 100%; /* Faz a imagem ocupar 100% da largura do botão */
+            height: 100%; /* Faz a imagem ocupar 100% da altura do botão */
+            object-fit: contain; /* Garante que a imagem se ajuste sem cortar ou esticar */
+            /* Se a imagem for muito pequena e você quiser que ela tenha um tamanho fixo menor que o botão: */
+            /* width: 20px;
+            height: 20px; */
+        }
+        
         /* --- ESTILOS GERAIS E MOBILE (MOBILE FIRST) --- */
         :root {
             --cor-principal: #8a2be2;
@@ -84,8 +119,9 @@
             .menu-lateral-cabecalho { border: none; padding: 0; }
             #fechar-menu-btn { display: none; }
             .menu-lateral ul { display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 0; }
-            .menu-lateral ul a { padding: 0.5rem 1rem; font-weight: 500; }
-            .menu-lateral ul a:hover { background-color: transparent; color: var(--cor-principal); }
+            .menu-lateral ul a { padding: 0.5rem 1rem; font-weight: 500; transition: color 0.3s ease, transform 0.3s ease; }
+            .menu-lateral ul li:first-child a { margin-left: 1rem; }
+            .menu-lateral ul a:hover { background-color: transparent; color: var(--cor-principal); transform: scale(1.1); }
             main { padding-top: 100px; }
             .menu-ativo{
                 background-color: #8A2BE2;
@@ -100,6 +136,7 @@
     </style>
     {{ $styles ?? '' }}
 </head>
+
 
 <body>
     <x-menu />
@@ -116,12 +153,21 @@
     </footer>
 
     <script>
+
         document.addEventListener('DOMContentLoaded', () => {
             const menuBtn = document.querySelector('.menu-btn');
             const fecharMenuBtn = document.querySelector('#fechar-menu-btn');
             const menuLateral = document.querySelector('.menu-lateral');
-            if (menuBtn && menuLateral) { menuBtn.addEventListener('click', () => { menuLateral.classList.add('aberto'); }); }
-            if (fecharMenuBtn && menuLateral) { fecharMenuBtn.addEventListener('click', () => { menuLateral.classList.remove('aberto'); }); }
+            if (menuBtn && menuLateral) {
+                menuBtn.addEventListener('click', () => {
+                    menuLateral.classList.add('aberto');
+                });
+            }
+            if (fecharMenuBtn && menuLateral) {
+                fecharMenuBtn.addEventListener('click', () => {
+                    menuLateral.classList.remove('aberto');
+                });
+            }
         });
     </script>
 </body>

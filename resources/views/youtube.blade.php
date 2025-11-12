@@ -28,7 +28,7 @@
     <div class="main-container">
 
         <div class="pagina-cabecalho">
-            <h1>Nosso Blog</h1>
+            <h1>Nosso Youtube</h1>
             <p>Assista às nossas apresentações, recitais e momentos especiais.</p>
         </div>
 

@@ -22,13 +22,13 @@ Route::get('/cursos-tipo', function () {
     return view('cursostipo');
 })->name('cursostipo');
 
-Route::get('/curso-tipo-descrição', function () {
+Route::get('/curso-tipo-descricao', function () {
     return view('cursosdescricao');
 })->name('cursosdescricao');
 
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
+Route::get('/youtube', function () {
+    return view('youtube');
+})->name('youtube');
 
 Route::get('/imagens-galeria', function () {
     return view('galeria');
@@ -38,7 +38,7 @@ Route::get('/agenda-cultural', function () {
     return view('agendacultural');
 })->name('agendacultural');
 
-Route::get('/agenda-cultural-descrição', function () {
+Route::get('/agenda-cultural-descricao', function () {
     return view('agendadescricao');
 })->name('agendadescricao');
 
@@ -50,6 +50,6 @@ Route::get('/sobre-casa-do-piano', function () {
     return view('sobre');
 })->name('sobre');
 
-Route::get('/serviços', function () {
+Route::get('/servicos', function () {
     return view('servicos');
 })->name('servicos');

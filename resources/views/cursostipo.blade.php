@@ -97,39 +97,33 @@
         <div class="cursos-grid">
 
             <div class="curso-card">
-                <div class="curso-card-imagem">
-                    <img src="https://placehold.co/600x400/8a2be2/FFF?text=Violão" alt="Curso de Violão">
-                </div>
                 <div class="curso-card-conteudo">
                     <h3>Curso de Violão</h3>
+                    <h5>Presencial e EAD</h5>
                     <p>Aprenda a tocar violão do zero, passando pelos ritmos populares, acordes e técnicas para tocar suas músicas favoritas.</p>
-                    <a href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
+                    <a wire:navigate href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
                 </div>
             </div>
 
             <div class="curso-card">
-                <div class="curso-card-imagem">
-                    <img src="https://placehold.co/600x400/4b0082/FFF?text=Teclado" alt="Curso de Teclado">
-                </div>
                 <div class="curso-card-conteudo">
                     <h3>Curso de Teclado</h3>
+                    <h5>Presencial e EAD</h5>
                     <p>Explore o universo das teclas, aprendendo harmonia, melodia e acompanhamentos para diversos estilos musicais.</p>
-                    <a href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
+                    <a wire:navigate href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
                 </div>
             </div>
 
             <div class="curso-card">
-                <div class="curso-card-imagem">
-                    <img src="https://placehold.co/600x400/8a2be2/FFF?text=Piano" alt="Curso de Piano">
-                </div>
                 <div class="curso-card-conteudo">
                     <h3>Curso de Piano</h3>
+                    <h5>Presencial e EAD</h5>
                     <p>Do clássico ao popular, desenvolva sua técnica e expressividade no mais completo dos instrumentos com nosso método exclusivo.</p>
-                    <a href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
+                    <a wire:navigate href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
                 </div>
             </div>
             
-            </div>
+        </div>
 
     </div>
 </x-layout>

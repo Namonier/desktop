@@ -134,7 +134,7 @@
                     <p class="produto-descricao-curta">
                         Perfeito para iniciantes e estudantes, este violão clássico oferece um som equilibrado e conforto ao tocar. Construído com materiais de qualidade para garantir durabilidade e uma ótima experiência musical.
                     </p>
-                    <a href="https://wa.me/5584987379538" target="_blank" class="btn-comprar">Comprar pelo WhatsApp</a>
+                    <a wire:navigate href="https://wa.me/5584987379538" target="_blank" class="btn-comprar">Comprar pelo WhatsApp</a>
                     <div class="produto-descricao-detalhada">
                         <h3>Detalhes do Produto</h3>
                         <ul>

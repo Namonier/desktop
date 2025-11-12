@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Event extends Model
+{
+    use HasFactory;
+
+    protected $primaryKey = 'id_event';
+    public $timestamps = true;
+
+    protected $fillable = [
+        'title',
+        'address',
+        'description',
+        'event_datetime',
+        'location',
+    ];
+
+    /**
+     * Define o relacionamento onde um Evento tem muitas Imagens de Galeria.
+     */
+    public function galleryImages(): HasMany
+    {
+        // hasMany(ModeloRelacionado, chave_estrangeira_na_outra_tabela, chave_local_nesta_tabela)
+        return $this->hasMany(GalleryImage::class, 'id_event', 'id_event');
+    }
+}

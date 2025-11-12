@@ -121,9 +121,6 @@
                     <img src="https://placehold.co/1200x400/4b0082/FFF?text=Recital+de+Piano" alt="Banner do Recital de Piano Clássico">
                 </div>
                 
-                <header class="evento-header">
-                    <h1>Recital de Piano Clássico</h1>
-                </header>
 
                 <div class="evento-meta-info">
                     <div class="meta-item">
@@ -145,21 +142,13 @@
                 </div>
 
                 <div class="btn-container">
-                    <a href="https://wa.me/5584991234567?text=Olá!%20Gostaria%20de%20reservar%20um%20ingresso%20para%20o%20Recital%20de%20Piano%20Clássico." target="_blank" class="btn-ingresso">Comprar Ingresso</a>
+                    <a wire:navigate href="https://wa.me/5588987379538?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20evento%20da%20agenda%20cultural." target="_blank" class="btn-ingresso">Mais informações</a>
                 </div>
 
                 <div class="evento-conteudo">
                     <section>
                         <h2>Sobre o Evento</h2>
                         <p>A Casa do Piano tem o prazer de apresentar uma noite inesquecível dedicada aos grandes mestres da música clássica. O recital contará com a performance do aclamado pianista convidado, que apresentará um repertório cuidadosamente selecionado, incluindo obras de Chopin, Beethoven e Mozart. Uma experiência emocionante e inspiradora para todos os amantes da boa música.</p>
-                    </section>
-                    
-                    <section>
-                        <h2>Localização</h2>
-                        <p>O evento ocorrerá em nosso auditório principal, localizado em nossa sede. Veja o mapa abaixo para encontrar o caminho.</p>
-                        <div class="evento-mapa">
-                        <iframe src="https://www.google.com/maps/embed?pb=!4v1756085458202!6m8!1m7!1szjnTwN9gC3Hm-IPiK1vctQ!2m2!1d-5.169531382106174!2d-37.36253883003268!3f358.2217240912843!4f-11.8744043185892!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
                     </section>
                 </div>
             </article>

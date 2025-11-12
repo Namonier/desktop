@@ -1,139 +1,199 @@
 <x-layout>
     <x-slot:styles>
-        <style>
-            main {
-                padding: 1rem;
-            }
+        @push('styles')
+            <style>
+                main {
+                    padding: 1rem;
+                }
 
-            .main-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 1rem;
-            }
+                .main-container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 1rem;
+                }
 
-            /* ✨✨✨ NOVOS ESTILOS PARA A PÁGINA DA AGENDA ✨✨✨ */
+                /* ✨✨✨ NOVOS ESTILOS PARA A PÁGINA DA AGENDA ✨✨✨ */
 
-            .pagina-cabecalho {
-                text-align: center;
-                margin-bottom: 2rem;
-                padding: 2rem 1rem;
-                background-color: var(--cor-branco);
-                border-radius: var(--borda-radius);
-                box-shadow: var(--sombra-card);
-            }
+                .pagina-cabecalho {
+                    text-align: center;
+                    margin-bottom: 2rem;
+                    padding: 2rem 1rem;
+                    background-color: var(--cor-branco);
+                    border-radius: var(--borda-radius);
+                    box-shadow: var(--sombra-card);
+                }
 
-            .pagina-cabecalho h1 {
-                color: var(--cor-secundaria);
-                font-size: 2.5rem;
-                margin-bottom: 0.5rem;
-            }
+                .pagina-cabecalho h1 {
+                    color: var(--cor-secundaria);
+                    font-size: 2.5rem;
+                    margin-bottom: 0.5rem;
+                }
 
-            /* Container da lista de eventos */
-            .agenda-lista {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem; /* Espaço entre os cards de evento */
-            }
-            
-            /* Card de um evento individual */
-            .evento-card {
-                display: flex;
-                flex-direction: column; /* Em telas pequenas, a data fica em cima */
-                background-color: var(--cor-branco);
-                border-radius: var(--borda-radius);
-                box-shadow: var(--sombra-card);
-                overflow: hidden;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            
-            .evento-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-
-            /* Seção da data do evento */
-            .evento-data {
-                background-color: var(--cor-principal);
-                color: var(--cor-branco);
-                text-align: center;
-                padding: 1.5rem 1rem;
-            }
-            
-            .evento-data .dia {
-                font-size: 3rem;
-                font-weight: 600;
-                line-height: 1;
-            }
-
-            .evento-data .mes {
-                font-size: 1.2rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-            /* Seção de informações do evento */
-            .evento-info {
-                padding: 1.5rem;
-                flex: 1; /* Faz com que esta seção ocupe o espaço restante */
-            }
-
-            .evento-info h3 {
-                font-size: 1.75rem;
-                color: var(--cor-secundaria);
-                margin-bottom: 0.75rem;
-            }
-            
-            .evento-meta {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1.5rem;
-                color: #666;
-                margin-bottom: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .evento-meta span {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .evento-descricao {
-                font-size: 1rem;
-                line-height: 1.6;
-                margin-bottom: 1.5rem;
-            }
-
-            .evento-btn {
-                display: inline-block;
-                background-color: var(--cor-principal);
-                color: var(--cor-branco);
-                padding: 0.75rem 1.5rem;
-                border-radius: var(--borda-radius);
-                font-weight: 500;
-                text-decoration: none;
-                transition: background-color 0.3s ease;
-            }
-            
-            .evento-btn:hover {
-                background-color: var(--cor-secundaria);
-            }
-
-            @media (min-width: 1024px) {
-
-                main { padding-top: 100px; }
-                .main-container { padding: 2rem; }
-        
-        /* Ajustes da agenda para desktop */
+                /* Container da lista de eventos */
+                .agenda-lista {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem; /* Espaço entre os cards de evento */
+                }
+                
+                /* Card de um evento individual */
                 .evento-card {
-                    flex-direction: row; /* Em telas grandes, a data fica ao lado das informações */
+                    display: flex;
+                    flex-direction: column; /* Em telas pequenas, a data fica em cima */
+                    background-color: var(--cor-branco);
+                    border-radius: var(--borda-radius);
+                    box-shadow: var(--sombra-card);
+                    overflow: hidden;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+                
+                .evento-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
                 }
 
+                /* Seção da data do evento */
                 .evento-data {
-                    flex-basis: 200px; /* Largura fixa para a seção da data */
+                    background-color: var(--cor-principal);
+                    color: var(--cor-branco);
+                    text-align: center;
+                    padding: 1.5rem 1rem;
                 }
-            }
-        </style>
+                
+                .evento-data .dia {
+                    font-size: 3rem;
+                    font-weight: 600;
+                    line-height: 1;
+                }
+
+                .evento-data .mes {
+                    font-size: 1.2rem;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+
+                /* Seção de informações do evento */
+                .evento-info {
+                    padding: 1.5rem;
+                    flex: 1; /* Faz com que esta seção ocupe o espaço restante */
+                }
+
+                .evento-info h3 {
+                    font-size: 1.75rem;
+                    color: var(--cor-secundaria);
+                    margin-bottom: 0.75rem;
+                }
+                
+                .evento-meta {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1.5rem;
+                    color: #666;
+                    margin-bottom: 1rem;
+                    font-size: 0.9rem;
+                }
+
+                .evento-meta span {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .evento-descricao {
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    margin-bottom: 1.5rem;
+                }
+
+                .evento-btn {
+                    display: inline-block;
+                    background-color: var(--cor-principal);
+                    color: var(--cor-branco);
+                    padding: 0.75rem 1.5rem;
+                    border-radius: var(--borda-radius);
+                    font-weight: 500;
+                    text-decoration: none;
+                    transition: background-color 0.3s ease;
+                }
+                
+                .evento-btn:hover {
+                    background-color: var(--cor-secundaria);
+                }
+
+                @media (min-width: 1024px) {
+
+                    main { padding-top: 100px; }
+                    .main-container { padding: 2rem; }
+            
+            /* Ajustes da agenda para desktop */
+                    .evento-card {
+                        flex-direction: row; /* Em telas grandes, a data fica ao lado das informações */
+                    }
+
+                    .evento-data {
+                        flex-basis: 200px; /* Largura fixa para a seção da data */
+                    }
+                }
+
+                .container {
+                    background-color: #ffffff;
+                    padding: 30px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    width: 90%;
+                    max-width: 400px;
+                    margin-left: auto;
+                    margin-right: 0;
+                    padding: 20px;
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 30px; 
+                }
+
+
+                label {
+                    display: block;
+                    margin-bottom: 10px;
+                    font-size: 1.1em;
+                    color: #333;
+                }
+
+                input[type="month"] {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    font-size: 1em;
+                    box-sizing: border-box; 
+                }
+
+                button {
+                    background-color: #8A2BE2;
+                    color: white;
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 5px;
+                    font-size: 1em;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+
+                button:hover {
+                    background-color: #4b0082;
+                }
+
+                #resultado {
+                    margin-top: 20px;
+                    font-size: 1.2em;
+                    color: #28a745;
+                    font-weight: bold;
+                    min-height: 25px;
+                }
+
+
+            </style>
+        @endpush
     </x-slot:styles>
 
     <div class="main-container">
@@ -141,6 +201,16 @@
         <div class="pagina-cabecalho">
             <h1>Agenda Cultural</h1>
             <p>Confira nossos próximos eventos e participe!</p>
+        </div>
+
+        <div class="container">
+            <form id="seletorForm">
+                <label for="mesAnoInput">Selecione o mês e ano:</label>
+                <input type="month" id="mesAnoInput" name="mesAno">
+                <button type="submit">Mostrar Seleção</button>
+            </form>
+
+            <p id="resultado"></p>
         </div>
 
         <div class="agenda-lista">
@@ -163,7 +233,7 @@
                         </span>
                     </div>
                     <p class="evento-descricao">Uma noite dedicada aos grandes mestres do piano, com apresentações de nossos professores e alunos avançados. Obras de Chopin, Beethoven e Mozart.</p>
-                    <a href="{{ route('agendadescricao') }}" class="evento-btn">Mais Informações</a>
+                    <a wire:navigate href="{{ route('agendadescricao') }}" class="evento-btn">Mais Informações</a>
                 </div>
             </div>
 
@@ -185,7 +255,7 @@
                         </span>
                     </div>
                     <p class="evento-descricao">Aprenda os fundamentos da criação musical, desde a melodia até a harmonia. Vagas limitadas, ideal para iniciantes e intermediários.</p>
-                    <a href="{{ route('agendadescricao') }}" class="evento-btn">Inscreva-se</a>
+                    <a wire:navigate href="{{ route('agendadescricao') }}" class="evento-btn">Inscreva-se</a>
                 </div>
             </div>
 
@@ -207,12 +277,11 @@
                         </span>
                     </div>
                     <p class="evento-descricao">Venha prestigiar o talento e a dedicação dos nossos alunos em um recital emocionante com repertório variado. Entrada franca.</p>
-                    <a href="{{ route('agendadescricao') }}" class="evento-btn">Saiba Mais</a>
+                    <a wire:navigate href="{{ route('agendadescricao') }}" class="evento-btn">Saiba Mais</a>
                 </div>
             </div>
 
         </div>
 
     </div>
-
 </x-layout>

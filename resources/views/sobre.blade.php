@@ -176,17 +176,17 @@
             <h3>Conecte-se Conosco</h3>
             <div class="social-links">
                 <div class="social-link">
-                    <a href="https://wa.me/5584987379538" target="_blank" aria-label="Link para o WhatsApp">
+                    <a wire:navigate href="https://wa.me/5584987379538" target="_blank" aria-label="Link para o WhatsApp">
                         <img src="{{ asset('imagens/icon-whatsapp.png') }}" alt="Imagem do icone do WhatsApp">
                     </a>
                 </div>
                 <div class="social-link">
-                    <a href="https://www.instagram.com/casadopianomossoro/#" target="_blank" aria-label="Link para o Instagram">
+                    <a wire:navigate href="https://www.instagram.com/casadopianomossoro/#" target="_blank" aria-label="Link para o Instagram">
                     <img src="{{ asset('imagens/icon-instagram.png') }}" alt="Imagem do icone do Instagram">
                     </a>
                 </div>
                 <div class="social-link">
-                    <a href="http://www.youtube.com/channel/UCAwGovOjkUQSES_hwSYqQrQ" target="_blank" aria-label="Link para o YouTube">
+                    <a wire:navigate href="http://www.youtube.com/channel/UCAwGovOjkUQSES_hwSYqQrQ" target="_blank" aria-label="Link para o YouTube">
                         <img src="{{ asset('imagens/icon-youtube.png') }}" alt="Imagem do icone do YouTube">
                     </a>
                 </div>

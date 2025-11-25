@@ -131,37 +131,18 @@
             </div>
 
             <div class="servicos-grid">
-
-                <div class="servico-card">
-                    <div class="servico-icone">
-                        <img src="{{ asset('imagens/icon-agenda.png') }}" alt="imagem do icone da agenda" >
+                @foreach($servicos as $servico)
+                    <div class="servico-card">
+                        <h3>{{ $servico['title'] }}</h3>
+                        <p>{{ $servico['description'] }}</p>
                     </div>
-                    <h3>Eventos Sociais e Culturais</h3>
-                    <p>Levamos a trilha sonora perfeita para casamentos, aniversários, recepções e aberturas culturais, criando uma atmosfera única e memorável.</p>
-                </div>
-
-                <div class="servico-card">
-                    <div class="servico-icone">
-                        <img src="{{ asset('imagens/icon-nota-musical.png') }}" alt="Imagem do icone da nota musical" >
-                    </div>
-                    <h3>Soluções Musicais</h3>
-                    <p>Oferecemos trilha sonora para cerimônias e música para recepções com formações diversas: músicos solo, duos, trios ou quartetos.</p>
-                </div>
-                
-                <div class="servico-card">
-                    <div class="servico-icone">
-                        <img src="{{ asset('imagens/icon-piano.png') }}" alt="Imagem do icone do piano" >
-                    </div>
-                    <h3>Locação de Piano de Cauda</h3>
-                    <p>Adicione um toque de classe ao seu evento com a locação de um piano acústico de cauda. Inclui frete e montagem completa no local.</p>
-                </div>
-
+                @endforeach
             </div>
 
             <section class="cta-secao">
                 <h2>Pronto para adicionar música ao seu evento?</h2>
                 <p>Entre em contato conosco para um orçamento personalizado e sem compromisso.</p>
-                <a wire:navigate href="https://wa.me/5588987379538?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os." class="cta-botao">Solicitar Orçamento</a>
+                <a  href="https://wa.me/5588987379538?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os." class="cta-botao">Solicitar Orçamento</a>
             </section>
 
         </div>

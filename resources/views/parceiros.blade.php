@@ -162,7 +162,7 @@
                     <div class="parceiro-info">
                         <h3>Luteria Artesanal Silva</h3>
                         <p>Nosso parceiro oficial para reparos, manutenção e customização de instrumentos de corda, garantindo a melhor qualidade para nossos clientes e alunos.</p>
-                        <a wire:navigate href="#" class="parceiro-btn">Visitar Site</a>
+                        <a  href="#" class="parceiro-btn">Visitar Site</a>
                     </div>
                 </div>
 
@@ -170,7 +170,7 @@
                     <div class="parceiro-info">
                         <h3>Estúdio de Gravação Som Puro</h3>
                         <p>O local onde nossos alunos e artistas locais podem gravar suas músicas com qualidade profissional. Oferecem descontos especiais para a comunidade da Casa do Piano.</p>
-                        <a wire:navigate href="#" class="parceiro-btn">Visitar Site</a>
+                        <a  href="#" class="parceiro-btn">Visitar Site</a>
                     </div>
                 </div>
 
@@ -178,7 +178,7 @@
                     <div class="parceiro-info">
                         <h3>Café Cultural Melodia</h3>
                         <p>Um espaço aconchegante que sedia nossos recitais menores e saraus, unindo a paixão pelo café com o amor pela música ao vivo.</p>
-                        <a wire:navigate href="#" class="parceiro-btn">Visitar Site</a>
+                        <a  href="#" class="parceiro-btn">Visitar Site</a>
                     </div>
                 </div>
 
@@ -187,7 +187,7 @@
             <section class="cta-secao">
                 <h2>Quer ser nosso parceiro?</h2>
                 <p>Se sua empresa compartilha da nossa paixão pela cultura e pela música, entre em contato e vamos conversar sobre como podemos colaborar.</p>
-                <a wire:navigate href="https://wa.me/5584987379538?text=Ol%C3%A1,%20gostaria%20de%20fazer%20uma%20parceria%20com%20voc%C3%AAs!" class="cta-botao">Entre em Contato</a>
+                <a  href="https://wa.me/5584987379538?text=Ol%C3%A1,%20gostaria%20de%20fazer%20uma%20parceria%20com%20voc%C3%AAs!" class="cta-botao">Entre em Contato</a>
             </section>
 
         </div>

@@ -114,7 +114,7 @@
                 <p class="curso-descricao">
                     Ideal para quem nunca teve contato com a música. Aprenda os fundamentos da teoria musical, postura e as primeiras notas no seu instrumento.
                 </p>
-                <a wire:navigate href="{{ route('cursostipo') }}" class="curso-btn">Saiba Mais</a>
+                <a href="{{ route('cursostipo') }}" class="curso-btn">Saiba Mais</a>
             </div>
 
             <div class="curso-card">
@@ -123,7 +123,7 @@
                 <p class="curso-descricao">
                     Para alunos que já possuem uma base e desejam aprofundar suas técnicas, repertório e conhecimento em harmonia.
                 </p>
-                <a wire:navigate href="{{ route('cursostipo') }}" class="curso-btn">Saiba Mais</a>
+                <a  href="{{ route('cursostipo') }}" class="curso-btn">Saiba Mais</a>
             </div>
 
         </div>

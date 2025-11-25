@@ -212,6 +212,10 @@
             .fechar-lightbox:hover {
             color: #f00;
             }
+            [wire\:loading] {
+                display: block !important;
+                visibility: hidden;
+            }
 
 
         </style>
@@ -219,21 +223,42 @@
 
     <div class="main-container">
             <section class="secao-container secao-destaque">
-                <h2>Destaque da Semana</h2>
+                <h2>Ultimo vídeo do youtube</h2>
                 <div class="video-card">
-                    <div class="video-responsive">
-                        <iframe src="https://www.youtube.com/embed/NmdT_Sje0OY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div id="video-container">
+                        <iframe id="youtube-frame" width="100%" height="315"
+                            src=""
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
                     </div>
-                    <div class="video-info">
-                        <h3>Recital Casa do Piano - Alan</h3>
-                        <p>Confira a belíssima apresentação do nosso aluno Alan. Uma performance emocionante que marca o encerramento do semestre.</p>
-                    </div>
+
+                    <script>
+                    async function carregarUltimoVideo() {
+                        const apiKey = "AIzaSyADn1rBpc_Tf2RHoQdxp4kYvbYv9XykxeE"; 
+                        const channelId = "UCAwGovOjkUQSES_hwSYqQrQ";
+
+                        //const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=1`;
+
+                        //const resposta = await fetch(url);
+                        //const dados = await resposta.json();
+
+                        const videoId = '{{ $id_youtube_video }}';
+
+                        document.getElementById("youtube-frame").src =
+                            `https://www.youtube.com/embed/${videoId}`;
+                    }
+
+                    carregarUltimoVideo();
+                    </script>
+                    
+
                     <div class="destaque-adicional">
                         <h3>Conheça a Casa do Piano</h3>
                         <p>Um espaço dedicado à arte e à educação musical. Explore nossos cursos, eventos e muito mais.</p>
                         <div class="destaque-botoes">
-                            <a wire:navigate href="{{ route('youtube') }}" class="destaque-btn">Ver Mais Vídeos</a>
-                            <a wire:navigate href="{{ route('cursos') }}" class="destaque-btn">Nossos Cursos</a>
+                            <a  href="{{ route('youtube') }}" class="destaque-btn">Ver Mais Vídeos</a>
+                            <a  href="{{ route('cursos') }}" class="destaque-btn">Nossos Cursos</a>
                         </div>
                     </div>
                     <div class="destaque-adicional">
@@ -255,7 +280,7 @@
                             <p id="lightbox-descricao"></p>
                         </div>
                         <div class="destaque-botoes">
-                            <a wire:navigate href="{{ route('galeria') }}" class="destaque-btn">Ver Mais Fotos</a>
+                            <a  href="{{ route('galeria') }}" class="destaque-btn">Ver Mais Fotos</a>
                         </div>
                     <script>
                         document.addEventListener('DOMContentLoaded', () => {
@@ -332,19 +357,19 @@
             <section class="secao-container secao-agenda">
                 <h2>Agenda Cultural</h2>
                 <div class="agenda-flex">
-                    <article class="agenda-item"><a wire:navigate href="{{ route('agendacultural') }}"><div class="data"><span class="dia-semana">SEX</span><span class="dia-mes">24</span></div><p class="evento-titulo">Exposição de Arte</p></a></article>
-                    <article class="agenda-item"><a wire:navigate href="{{ route('agendacultural') }}"><div class="data"><span class="dia-semana">SÁB</span><span class="dia-mes">25</span></div><p class="evento-titulo">Show de Música</p></a></article>
+                    <article class="agenda-item"><a  href="{{ route('agendacultural') }}"><div class="data"><span class="dia-semana">SEX</span><span class="dia-mes">24</span></div><p class="evento-titulo">Exposição de Arte</p></a></article>
+                    <article class="agenda-item"><a  href="{{ route('agendacultural') }}"><div class="data"><span class="dia-semana">SÁB</span><span class="dia-mes">25</span></div><p class="evento-titulo">Show de Música</p></a></article>
                 </div>
             </section>
 
             <section class="secao-container secao-promocoes">
                 <h2>Loja</h2>
                 <div class="promocoes-flex">
-                       <a wire:navigate href="{{ route('lojaproduto') }}" class="produto-card">
+                       <a  href="{{ route('lojaproduto') }}" class="produto-card">
                         <img src="{{ asset('imagens/violaolaranja.jpeg') }}" alt="Violão clássico" class="produto-img">
                         <div class="produto-info"><p>Violão Clássico Acústico</p><span class="preco">R$459</span></div>
                     </a>
-                    <a wire:navigate href="{{ route('lojaproduto') }}" class="produto-card">
+                    <a  href="{{ route('lojaproduto') }}" class="produto-card">
                         <img src="{{ asset('imagens/pandeiro.webp') }}" alt="Pandeiro profissional" class="produto-img">
                         <div class="produto-info"><p>Pandeiro Profissional de Couro</p><span class="preco">R$219</span></div>
                     </a>

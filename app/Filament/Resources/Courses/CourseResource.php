@@ -16,6 +16,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Select;
 
 class CourseResource extends Resource
 {
@@ -24,6 +25,8 @@ class CourseResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Curso';
+
+    protected static ?string $modelLabel = 'Curso';
 
     public static function form(Schema $schema): Schema
     {
@@ -38,9 +41,8 @@ class CourseResource extends Resource
                     ->columnSpanFull(),
                 TextInput::make('duration')
                     ->required(),
-                TextInput::make('id_categories')
-                    ->required()
-                    ->numeric(),
+                Select::make('id_categories')
+                    ->relationship(name: 'category', titleAttribute: 'title')
             ]);
     }
 

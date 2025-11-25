@@ -15,6 +15,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Select;
 
 class TeacherResource extends Resource
 {
@@ -22,7 +23,7 @@ class TeacherResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Professor';
+    protected static ?string $recordTitleAttribute = 'Professores';
 
     public static function form(Schema $schema): Schema
     {
@@ -34,13 +35,16 @@ class TeacherResource extends Resource
                     ->required(),
                 TextInput::make('photo')
                     ->required(),
-            ]);
+                Select::make('courses')
+                    ->multiple()
+                    ->relationship(titleAttribute: 'title')
+                ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('Professor')
+            ->recordTitleAttribute('Professores')
             ->columns([
                 TextColumn::make('description')
                     ->searchable(),

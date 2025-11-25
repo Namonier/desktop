@@ -25,6 +25,8 @@ class CategoryResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Categoria';
 
+    protected static ?string $modelLabel = 'Categoria';
+
     public static function form(Schema $schema): Schema
     {
         return $schema

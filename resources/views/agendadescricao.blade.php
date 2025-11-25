@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="btn-container">
-                    <a wire:navigate href="https://wa.me/5588987379538?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20evento%20da%20agenda%20cultural." target="_blank" class="btn-ingresso">Mais informações</a>
+                    <a  href="https://wa.me/5588987379538?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20evento%20da%20agenda%20cultural." target="_blank" class="btn-ingresso">Mais informações</a>
                 </div>
 
                 <div class="evento-conteudo">

@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <style>
 
         /* Estilos para o botão de voltar */
@@ -135,164 +136,13 @@
 
     </style>
     {{ $styles ?? '' }}
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 
 </head>
 <body>
-    <script>
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.querySelector('.menu-btn');
-            const fecharMenuBtn = document.querySelector('#fechar-menu-btn');
-            const menuLateral = document.querySelector('.menu-lateral');
-            if (menuBtn && menuLateral) {
-                menuBtn.addEventListener('click', () => {
-                    menuLateral.classList.add('aberto');
-                });
-            }
-            if (fecharMenuBtn && menuLateral) {
-                fecharMenuBtn.addEventListener('click', () => {
-                    menuLateral.classList.remove('aberto');
-                });
-            }
-
-            // Lightbox elementos (globais)
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const fecharLightbox = document.getElementById('fechar-lightbox');
-
-            // Fecha lightbox
-            if (fecharLightbox) fecharLightbox.addEventListener('click', () => { if (lightbox) lightbox.style.display = 'none'; });
-            if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; });
-
-            // Para cada carrossel na página
-            document.querySelectorAll('.carrossel').forEach(carrossel => {
-                const slides = carrossel.querySelector('.slides');
-                if (!slides) return;
-
-                // imagens originais
-                const origImgs = Array.from(slides.querySelectorAll('img'));
-                if (origImgs.length === 0) return;
-
-                // Clonar primeira e última e inserir nas pontas
-                const firstClone = origImgs[0].cloneNode(true);
-                const lastClone = origImgs[origImgs.length - 1].cloneNode(true);
-                slides.appendChild(firstClone);
-                slides.insertBefore(lastClone, slides.firstChild);
-
-                // Re-obter lista de imagens (agora com clones)
-                let imgs = Array.from(slides.querySelectorAll('img'));
-
-                // Certificar que cada img ocupa 100% (em caso do CSS não ter sido aplicado)
-                imgs.forEach(img => img.style.flex = '0 0 100%');
-
-                // Estado
-                let index = 1; // começamos na primeira imagem real (depois do lastClone)
-                let isTransitioning = false;
-
-                // Ajusta posição inicial
-                slides.style.transition = 'none';
-                slides.style.transform = `translateX(${-index * 100}%)`;
-                // forçar reflow
-                slides.getBoundingClientRect();
-                slides.style.transition = 'transform 0.6s ease-in-out';
-
-                // Navegação (botões)
-                const btnPrev = carrossel.querySelector('.anterior');
-                const btnNext = carrossel.querySelector('.proximo');
-
-                function goTo(i) {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                index = i;
-                slides.style.transition = 'transform 0.6s ease-in-out';
-                slides.style.transform = `translateX(${-index * 100}%)`;
-                }
-
-                if (btnNext) btnNext.addEventListener('click', () => goTo(index + 1));
-                if (btnPrev) btnPrev.addEventListener('click', () => goTo(index - 1));
-
-                // Quando a transição termina, verificar clones e saltar "sem animação" para o slide real
-                slides.addEventListener('transitionend', () => {
-                isTransitioning = false;
-                if (index >= imgs.length - 1) { // chegou no clone da primeira imagem
-                    index = 1;
-                    slides.style.transition = 'none';
-                    slides.style.transform = `translateX(${-index * 100}%)`;
-                    slides.getBoundingClientRect(); // reflow
-                    slides.style.transition = 'transform 0.6s ease-in-out';
-                } else if (index <= 0) { // chegou no clone da última imagem
-                    index = imgs.length - 2;
-                    slides.style.transition = 'none';
-                    slides.style.transform = `translateX(${-index * 100}%)`;
-                    slides.getBoundingClientRect();
-                    slides.style.transition = 'transform 0.6s ease-in-out';
-                }
-                });
-
-                // Autoplay / loop
-                let autoplay = setInterval(() => { goTo(index + 1); }, 4000);
-
-                // Pausa ao passar o mouse e retoma ao sair
-                carrossel.addEventListener('mouseenter', () => clearInterval(autoplay));
-                carrossel.addEventListener('mouseleave', () => { autoplay = setInterval(() => goTo(index + 1), 4000); });
-
-                // REAPLICA o evento de clique para lightbox em todas as imagens (incluindo clones)
-                imgs.forEach(img => {
-                img.addEventListener('click', () => {
-                    if (!lightbox || !lightboxImg) return;
-                    lightboxImg.src = img.src;
-                    lightbox.style.display = 'block';
-                });
-                });
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImg = document.getElementById('lightbox-img');
-                const lightboxDescricao = document.getElementById('lightbox-descricao');
-                const fecharLightbox = document.getElementById('fechar-lightbox');
-
-                imgs.forEach(img => {
-                img.addEventListener('click', () => {
-                    if (!lightbox || !lightboxImg) return;
-                    lightboxImg.src = img.src;
-                    lightbox.style.display = 'block';
-                    
-                    // pega descrição
-                    const descricao = img.getAttribute('data-descricao') || img.alt || '';
-                    lightboxDescricao.textContent = descricao;
-                });
-                });
-            });
-
-            // ===== SELETOR DE MÊS E ANO =====
-            const seletorForm = document.getElementById('seletorForm');
-            const inputMesAno = document.getElementById('mesAnoInput');
-            const resultadoP = document.getElementById('resultado');
-
-            seletorForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const valorSelecionado = inputMesAno.value;
-
-                if (!valorSelecionado) {
-                    resultadoP.textContent = 'Por favor, selecione um mês e ano.';
-                    resultadoP.style.color = '#dc3545';
-                    return;
-                }
-
-                const [ano, mes] = valorSelecionado.split('-');
-                const nomesDosMeses = [
-                    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-                ];
-                const nomeMes = nomesDosMeses[parseInt(mes) - 1];
-
-                resultadoP.textContent = `Você selecionou: ${nomeMes} de ${ano}`;
-                resultadoP.style.color = '#28a745';
-            });
-        });
-
-    </script>
+    
     <x-menu />
 
     <main>
@@ -306,7 +156,161 @@
         <p>WhatsApp: (84) 98737-9538</p>
     </footer>
 
-    
+    <script>
+    function menujs(){
+        const menuBtn = document.querySelector('.menu-btn');
+    const fecharMenuBtn = document.querySelector('#fechar-menu-btn');
+    const menuLateral = document.querySelector('.menu-lateral');
+    if (menuBtn && menuLateral) {
+        menuBtn.addEventListener('click', () => {
+            menuLateral.classList.add('aberto');
+        });
+    }
+    if (fecharMenuBtn && menuLateral) {
+        fecharMenuBtn.addEventListener('click', () => {
+            menuLateral.classList.remove('aberto');
+        });
+    }
+
+    // Lightbox elementos (globais)
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const fecharLightbox = document.getElementById('fechar-lightbox');
+
+    // Fecha lightbox
+    if (fecharLightbox) fecharLightbox.addEventListener('click', () => { if (lightbox) lightbox.style.display = 'none'; });
+    if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; });
+
+    // Para cada carrossel na página
+    document.querySelectorAll('.carrossel').forEach(carrossel => {
+        const slides = carrossel.querySelector('.slides');
+        if (!slides) return;
+
+        // imagens originais
+        const origImgs = Array.from(slides.querySelectorAll('img'));
+        if (origImgs.length === 0) return;
+
+        // Clonar primeira e última e inserir nas pontas
+        const firstClone = origImgs[0].cloneNode(true);
+        const lastClone = origImgs[origImgs.length - 1].cloneNode(true);
+        slides.appendChild(firstClone);
+        slides.insertBefore(lastClone, slides.firstChild);
+
+        // Re-obter lista de imagens (agora com clones)
+        let imgs = Array.from(slides.querySelectorAll('img'));
+
+        // Certificar que cada img ocupa 100% (em caso do CSS não ter sido aplicado)
+        imgs.forEach(img => img.style.flex = '0 0 100%');
+
+        // Estado
+        let index = 1; // começamos na primeira imagem real (depois do lastClone)
+        let isTransitioning = false;
+
+        // Ajusta posição inicial
+        slides.style.transition = 'none';
+        slides.style.transform = `translateX(${-index * 100}%)`;
+        // forçar reflow
+        slides.getBoundingClientRect();
+        slides.style.transition = 'transform 0.6s ease-in-out';
+
+        // Navegação (botões)
+        const btnPrev = carrossel.querySelector('.anterior');
+        const btnNext = carrossel.querySelector('.proximo');
+
+        function goTo(i) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        index = i;
+        slides.style.transition = 'transform 0.6s ease-in-out';
+        slides.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        if (btnNext) btnNext.addEventListener('click', () => goTo(index + 1));
+        if (btnPrev) btnPrev.addEventListener('click', () => goTo(index - 1));
+
+        // Quando a transição termina, verificar clones e saltar "sem animação" para o slide real
+        slides.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        if (index >= imgs.length - 1) { // chegou no clone da primeira imagem
+            index = 1;
+            slides.style.transition = 'none';
+            slides.style.transform = `translateX(${-index * 100}%)`;
+            slides.getBoundingClientRect(); // reflow
+            slides.style.transition = 'transform 0.6s ease-in-out';
+        } else if (index <= 0) { // chegou no clone da última imagem
+            index = imgs.length - 2;
+            slides.style.transition = 'none';
+            slides.style.transform = `translateX(${-index * 100}%)`;
+            slides.getBoundingClientRect();
+            slides.style.transition = 'transform 0.6s ease-in-out';
+        }
+        });
+
+        // Autoplay / loop
+        let autoplay = setInterval(() => { goTo(index + 1); }, 4000);
+
+        // Pausa ao passar o mouse e retoma ao sair
+        carrossel.addEventListener('mouseenter', () => clearInterval(autoplay));
+        carrossel.addEventListener('mouseleave', () => { autoplay = setInterval(() => goTo(index + 1), 4000); });
+
+        // REAPLICA o evento de clique para lightbox em todas as imagens (incluindo clones)
+        imgs.forEach(img => {
+        img.addEventListener('click', () => {
+            if (!lightbox || !lightboxImg) return;
+            lightboxImg.src = img.src;
+            lightbox.style.display = 'block';
+        });
+        });
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxDescricao = document.getElementById('lightbox-descricao');
+        const fecharLightbox = document.getElementById('fechar-lightbox');
+
+        imgs.forEach(img => {
+        img.addEventListener('click', () => {
+            if (!lightbox || !lightboxImg) return;
+            lightboxImg.src = img.src;
+            lightbox.style.display = 'block';
+            
+            // pega descrição
+            const descricao = img.getAttribute('data-descricao') || img.alt || '';
+            lightboxDescricao.textContent = descricao;
+        });
+        });
+    });
+
+    // ===== SELETOR DE MÊS E ANO =====
+    const seletorForm = document.getElementById('seletorForm');
+    const inputMesAno = document.getElementById('mesAnoInput');
+    const resultadoP = document.getElementById('resultado');
+
+    seletorForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const valorSelecionado = inputMesAno.value;
+
+        if (!valorSelecionado) {
+            resultadoP.textContent = 'Por favor, selecione um mês e ano.';
+            resultadoP.style.color = '#dc3545';
+            return;
+        }
+
+        const [ano, mes] = valorSelecionado.split('-');
+        const nomesDosMeses = [
+            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+        ];
+        const nomeMes = nomesDosMeses[parseInt(mes) - 1];
+
+        resultadoP.textContent = `Você selecionou: ${nomeMes} de ${ano}`;
+        resultadoP.style.color = '#28a745';
+    });
+    }        
+document.addEventListener('DOMContentLoaded', () => {
+    menujs();
+});
+    </script>
+
+
     @livewireScripts
 </body>
 

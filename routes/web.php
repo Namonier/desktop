@@ -3,7 +3,17 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('inicial');
+    $url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCAwGovOjkUQSES_hwSYqQrQ';
+    $xmlString = Http::get($url)->body();
+    $feed = new \SimpleXMLElement($xmlString);
+    //Get the first entry:
+    $entries = $feed->entry;
+    //dd($entries);
+    //if (empty($entries)) return null;
+    //Extract the video ID from the link:
+    $id_youtube_video = (string) explode('=',$entries->link['href'])[1];
+    //dd($link);
+    return view('inicial', compact('id_youtube_video'));
 })->name('inicial');
 
 Route::get('/loja', function () {
@@ -51,5 +61,6 @@ Route::get('/sobre-casa-do-piano', function () {
 })->name('sobre');
 
 Route::get('/servicos', function () {
-    return view('servicos');
+    $servicos = \App\Models\Service::all()->toArray();  
+    return view('servicos', compact('servicos'));
 })->name('servicos');

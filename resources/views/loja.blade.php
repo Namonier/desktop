@@ -47,7 +47,7 @@
             <div class="loja-grid">
 
                 <div class="produto-card-loja">
-                    <a wire:navigate href="{{ route('lojaproduto') }}">
+                    <a  href="{{ route('lojaproduto') }}">
                         <div class="produto-imagem-container">
                             <img src="{{ asset('imagens/violaolaranja.jpeg') }}" alt="Violão Clássico Acústico">
                         </div>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="produto-card-loja">
-                    <a wire:navigate href="{{ route('lojaproduto') }}">
+                    <a  href="{{ route('lojaproduto') }}">
                         <div class="produto-imagem-container">
                             <img src="{{ asset('imagens/pandeiro.webp') }}" alt="Pandeiro Profissional de Couro">
                         </div>
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="produto-card-loja">
-                    <a wire:navigate href="{{ route('lojaproduto') }}">
+                    <a  href="{{ route('lojaproduto') }}">
                         <div class="produto-imagem-container">
                             <img src="{{ asset('imagens/tecladomusical.webp') }}" alt="Teclado Musical Iniciante">
                         </div>
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="produto-card-loja">
-                    <a wire:navigate href="{{ route('lojaproduto') }}">
+                    <a  href="{{ route('lojaproduto') }}">
                         <div class="produto-imagem-container">
                             <img src="{{ asset('imagens/akulele.webp') }}" alt="Ukulele Soprano Acústico">
                         </div>

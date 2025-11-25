@@ -26,6 +26,8 @@ class EventResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Evento';
 
+    protected static ?string $modelLabel = 'Evento';
+
     public static function form(Schema $schema): Schema
     {
         return $schema

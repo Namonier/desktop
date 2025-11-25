@@ -25,6 +25,8 @@ class PartnerResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Parceiro';
 
+    protected static ?string $modelLabel = 'Parceiro';
+
     public static function form(Schema $schema): Schema
     {
         return $schema

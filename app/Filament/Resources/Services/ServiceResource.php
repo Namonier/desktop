@@ -25,6 +25,8 @@ class ServiceResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Serviços';
 
+    protected static ?string $modelLabel = 'Serviços';
+
     public static function form(Schema $schema): Schema
     {
         return $schema

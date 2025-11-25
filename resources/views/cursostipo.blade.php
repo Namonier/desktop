@@ -101,7 +101,7 @@
                     <h3>Curso de Violão</h3>
                     <h5>Presencial e EAD</h5>
                     <p>Aprenda a tocar violão do zero, passando pelos ritmos populares, acordes e técnicas para tocar suas músicas favoritas.</p>
-                    <a wire:navigate href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
+                    <a  href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
                 </div>
             </div>
 
@@ -110,7 +110,7 @@
                     <h3>Curso de Teclado</h3>
                     <h5>Presencial e EAD</h5>
                     <p>Explore o universo das teclas, aprendendo harmonia, melodia e acompanhamentos para diversos estilos musicais.</p>
-                    <a wire:navigate href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
+                    <a  href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
                 </div>
             </div>
 
@@ -119,7 +119,7 @@
                     <h3>Curso de Piano</h3>
                     <h5>Presencial e EAD</h5>
                     <p>Do clássico ao popular, desenvolva sua técnica e expressividade no mais completo dos instrumentos com nosso método exclusivo.</p>
-                    <a wire:navigate href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
+                    <a  href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
                 </div>
             </div>
             

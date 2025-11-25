@@ -233,7 +233,7 @@
                         </span>
                     </div>
                     <p class="evento-descricao">Uma noite dedicada aos grandes mestres do piano, com apresentações de nossos professores e alunos avançados. Obras de Chopin, Beethoven e Mozart.</p>
-                    <a wire:navigate href="{{ route('agendadescricao') }}" class="evento-btn">Mais Informações</a>
+                    <a  href="{{ route('agendadescricao') }}" class="evento-btn">Mais Informações</a>
                 </div>
             </div>
 
@@ -255,7 +255,7 @@
                         </span>
                     </div>
                     <p class="evento-descricao">Aprenda os fundamentos da criação musical, desde a melodia até a harmonia. Vagas limitadas, ideal para iniciantes e intermediários.</p>
-                    <a wire:navigate href="{{ route('agendadescricao') }}" class="evento-btn">Inscreva-se</a>
+                    <a  href="{{ route('agendadescricao') }}" class="evento-btn">Inscreva-se</a>
                 </div>
             </div>
 
@@ -277,7 +277,7 @@
                         </span>
                     </div>
                     <p class="evento-descricao">Venha prestigiar o talento e a dedicação dos nossos alunos em um recital emocionante com repertório variado. Entrada franca.</p>
-                    <a wire:navigate href="{{ route('agendadescricao') }}" class="evento-btn">Saiba Mais</a>
+                    <a  href="{{ route('agendadescricao') }}" class="evento-btn">Saiba Mais</a>
                 </div>
             </div>
 

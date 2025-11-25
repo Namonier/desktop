@@ -26,6 +26,8 @@ class ProductImageResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Produto_imagem';
 
+    protected static ?string $modelLabel = 'Imagem Produto';
+
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -36,9 +38,6 @@ class ProductImageResource extends Resource
                 TextInput::make('title')
                     ->required(),
                 TextInput::make('is_home')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('id_product')
                     ->required()
                     ->numeric(),
             ]);

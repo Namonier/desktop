@@ -26,6 +26,8 @@ class GalleryImageResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Image_galeria';
 
+    protected static ?string $modelLabel = 'Imagem da galeria';
+
     public static function form(Schema $schema): Schema
     {
         return $schema

@@ -25,10 +25,11 @@ class Course extends Model
     /**
      * Define o relacionamento onde o Curso pertence a uma Categoria.
      */
-    public function category(): BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class, 'id_categories', 'id_categories');
     }
+
 
     /**
      * Define o relacionamento Muitos-para-Muitos com Professores.
@@ -44,4 +45,5 @@ class Course extends Model
             'id_teacher'        // Chave estrangeira do Teacher na pivot
         );
     }
+    
 }

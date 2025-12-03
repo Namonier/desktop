@@ -24,9 +24,9 @@ class Event extends Model
     /**
      * Define o relacionamento onde um Evento tem muitas Imagens de Galeria.
      */
-    public function galleryImages(): HasMany
+    public function galleryImages()
     {
-        // hasMany(ModeloRelacionado, chave_estrangeira_na_outra_tabela, chave_local_nesta_tabela)
-        return $this->hasMany(GalleryImage::class, 'id_event', 'id_event');
+        return $this->hasMany(\App\Models\GalleryImage::class, 'id_event');
     }
+    
 }

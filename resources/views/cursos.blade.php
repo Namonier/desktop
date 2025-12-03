@@ -107,26 +107,15 @@
         </div>
 
         <div class="cursos-grid">
-
-            <div class="curso-card">
-                <h3>Curso de Iniciação</h3>
-                <span class="curso-modalidade">Presencial e a Distância</span>
-                <p class="curso-descricao">
-                    Ideal para quem nunca teve contato com a música. Aprenda os fundamentos da teoria musical, postura e as primeiras notas no seu instrumento.
-                </p>
-                <a href="{{ route('cursostipo') }}" class="curso-btn">Saiba Mais</a>
-            </div>
-
-            <div class="curso-card">
-                <h3>Curso Intermediário</h3>
-                <span class="curso-modalidade">Presencial e a Distância</span>
-                <p class="curso-descricao">
-                    Para alunos que já possuem uma base e desejam aprofundar suas técnicas, repertório e conhecimento em harmonia.
-                </p>
-                <a  href="{{ route('cursostipo') }}" class="curso-btn">Saiba Mais</a>
-            </div>
-
+            @foreach($cursos as $curso)
+                <div class="curso-card">
+                    <h3>{{ $curso['title'] }}</h3>
+                    <p class="curso-descricao">{{ $curso['description'] }}</p>
+                    <a href="{{ route('cursostipo', $curso['id_categories']) }}" class="curso-btn">
+                        Saiba Mais
+                    </a>
+                </div>
+            @endforeach
         </div>
-
     </div>
 </x-layout>

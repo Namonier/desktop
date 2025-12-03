@@ -16,6 +16,8 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\FileUpload;
+
 
 class TeacherResource extends Resource
 {
@@ -33,8 +35,13 @@ class TeacherResource extends Resource
                     ->required(),
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('photo')
-                    ->required(),
+                FileUpload::make('foto')
+                    ->label('Foto')
+                    ->image()
+                    ->directory('teachers')
+                    ->openable()
+                    ->downloadable()
+                    ->nullable(),                
                 Select::make('courses')
                     ->multiple()
                     ->relationship(titleAttribute: 'title')

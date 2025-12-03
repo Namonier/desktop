@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Course;
+use App\Models\Teacher;
+use App\Models\Product;
+use App\Models\ProductImage;
+
+
 
 Route::get('/', function () {
     $url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCAwGovOjkUQSES_hwSYqQrQ';
@@ -17,43 +23,63 @@ Route::get('/', function () {
 })->name('inicial');
 
 Route::get('/loja', function () {
-    return view('loja');
+    $itens_imagens = \App\Models\ProductImage::all()->toArray(); 
+    $itens = \App\Models\Product::all()->toArray(); 
+    //dd($itens_imagens);
+    //dd($itens);
+    return view('loja', compact('itens', 'itens_imagens'));
 })->name('loja');
 
-Route::get('/loja-produto', function () {
-    return view('produto');
+Route::get('/loja-produto/{id}', function ($id) {
+    $itens = Product::where('id_product', $id)->get()->toArray();
+
+    $itens_imagens = ProductImage::where('id_product', $id)->get()->toArray();
+
+    return view('produto', compact('itens', 'itens_imagens'));
 })->name('lojaproduto');
 
 Route::get('/cursos', function () {
-    return view('cursos');
+    $cursos = \App\Models\Category::all()->toArray(); 
+    //dd($cursos);
+    return view('cursos', compact('cursos'));
 })->name('cursos');
 
-Route::get('/cursos-tipo', function () {
-    return view('cursostipo');
+Route::get('/cursos-tipo/{id}', function ($id) {
+
+    $curso_tipos = Course::where('id_categories', $id)->get()->toArray();
+
+    return view('cursostipo', compact('curso_tipos'));
+
 })->name('cursostipo');
 
-Route::get('/curso-tipo-descricao', function () {
-    return view('cursosdescricao');
+Route::get('/curso-tipo-descricao/{id}', function ($id) {
+    $categoria = \App\Models\Category::all()->toArray(); 
+
+    $curso = Course::with(['teachers', 'category'])
+                   ->where('id_courses', $id)
+                   ->first();
+
+    return view('cursosdescricao', compact('curso', 'categoria'));
 })->name('cursosdescricao');
 
-Route::get('/youtube', function () {
-    return view('youtube');
-})->name('youtube');
 
 Route::get('/imagens-galeria', function () {
     return view('galeria');
 })->name('galeria');
 
 Route::get('/agenda-cultural', function () {
-    return view('agendacultural');
+    $agenda_cultural = \App\Models\Event::all()->toArray(); 
+    return view('agendacultural', compact('agenda_cultural'));
 })->name('agendacultural');
 
 Route::get('/agenda-cultural-descricao', function () {
-    return view('agendadescricao');
+    $agenda_cultural = \App\Models\Event::all()->toArray();
+    return view('agendadescricao', compact('agenda_cultural'));
 })->name('agendadescricao');
 
 Route::get('/parcerias', function () {
-    return view('parceiros');
+    $parceiros = \App\Models\Partner::all()->toArray(); 
+    return view('parceiros', compact('parceiros'));
 })->name('parceiros');
 
 Route::get('/sobre-casa-do-piano', function () {

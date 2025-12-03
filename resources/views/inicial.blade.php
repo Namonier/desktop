@@ -257,7 +257,7 @@
                         <h3>Conheça a Casa do Piano</h3>
                         <p>Um espaço dedicado à arte e à educação musical. Explore nossos cursos, eventos e muito mais.</p>
                         <div class="destaque-botoes">
-                            <a  href="{{ route('youtube') }}" class="destaque-btn">Ver Mais Vídeos</a>
+                            <a  href="{{ route('sobre') }}" class="destaque-btn">Saiba mais sobre a casa do piano</a>
                             <a  href="{{ route('cursos') }}" class="destaque-btn">Nossos Cursos</a>
                         </div>
                     </div>
@@ -363,16 +363,49 @@
             </section>
 
             <section class="secao-container secao-promocoes">
-                <h2>Loja</h2>
+                <h2>Loja - Novidades</h2>
+                
                 <div class="promocoes-flex">
-                       <a  href="{{ route('lojaproduto') }}" class="produto-card">
-                        <img src="{{ asset('imagens/violaolaranja.jpeg') }}" alt="Violão clássico" class="produto-img">
-                        <div class="produto-info"><p>Violão Clássico Acústico</p><span class="preco">R$459</span></div>
-                    </a>
-                    <a  href="{{ route('lojaproduto') }}" class="produto-card">
-                        <img src="{{ asset('imagens/pandeiro.webp') }}" alt="Pandeiro profissional" class="produto-img">
-                        <div class="produto-info"><p>Pandeiro Profissional de Couro</p><span class="preco">R$219</span></div>
-                    </a>
+
+                    @php
+                        // 1. Busca os produtos no banco
+                        // 'with('images')': Já traz as imagens junto para não dar erro
+                        // 'latest()': Ordena do mais novo para o mais antigo (baseado no created_at)
+                        // 'take(2)': Pega apenas os 2 primeiros
+                        $ultimos_produtos = \App\Models\Product::with('images')->latest()->take(2)->get();
+                    @endphp
+
+                    @foreach($ultimos_produtos as $produto)
+                        {{-- Link para a página de detalhes passando o ID do produto --}}
+                        <a href="{{ route('lojaproduto', $produto->id_product) }}" class="produto-card">
+                            
+                            {{-- LÓGICA DA IMAGEM --}}
+                            @if($produto->images->isNotEmpty())
+                                {{-- Pega a primeira imagem encontrada --}}
+                                <img src="{{ asset('storage/' . $produto->images->first()->image_url) }}" 
+                                    alt="{{ $produto->name }}" 
+                                    class="produto-img">
+                            @else
+                                {{-- Imagem padrão caso o produto não tenha foto --}}
+                                <img src="https://via.placeholder.com/300?text=Sem+Foto" 
+                                    alt="Imagem indisponível" 
+                                    class="produto-img">
+                            @endif
+
+                            <div class="produto-info">
+                                <p>{{ $produto->name }}</p>
+                                <span class="preco">
+                                    R$ {{ number_format($produto->price, 2, ',', '.') }}
+                                </span>
+                            </div>
+                        </a>
+                    @endforeach
+
+                    {{-- Se não tiver produtos, mostra mensagem (opcional) --}}
+                    @if($ultimos_produtos->isEmpty())
+                        <p style="text-align: center; width: 100%; color: #666;">Nenhum produto recente.</p>
+                    @endif
+
                 </div>
             </section>
         </div>

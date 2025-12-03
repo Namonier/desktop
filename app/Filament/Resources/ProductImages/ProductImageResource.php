@@ -34,6 +34,9 @@ class ProductImageResource extends Resource
             ->components([
                 FileUpload::make('image_url')
                     ->image()
+                    ->disk('public')
+                    ->directory('produtos') // Salva na pasta storage/app/public/produtos
+                    ->visibility('public')
                     ->required(),
                 TextInput::make('title')
                     ->required(),

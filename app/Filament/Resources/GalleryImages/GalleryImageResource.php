@@ -24,9 +24,7 @@ class GalleryImageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Image_galeria';
-
-    protected static ?string $modelLabel = 'Imagem da galeria';
+    protected static ?string $recordTitleAttribute = 'Galeria Imagem';
 
     public static function form(Schema $schema): Schema
     {
@@ -45,7 +43,7 @@ class GalleryImageResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('Image_galeria')
+            ->recordTitleAttribute('Galeria Imagem')
             ->columns([
                 ImageColumn::make('image_url'),
                 TextColumn::make('description')

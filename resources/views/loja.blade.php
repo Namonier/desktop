@@ -33,6 +33,19 @@
             .pagina-cabecalho {
                 margin-top: 2rem;
             }
+            /* Adicione padding aqui */
+            .produto-imagem-container {
+                padding: 20px; /* Isso cria um respiro em volta da imagem */
+                text-align: center; /* Garante que ela fique centralizada */
+            }
+
+            /* Mantenha o img como 100% ou reduza um pouco se quiser */
+            .produto-imagem-container img {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: contain; /* Mude de 'cover' para 'contain' para ver o produto todo sem cortes */
+                border-radius: 8px; /* Opcional: fica bonito com bordas arredondadas */
+            }
 
         </style>
     </x-slot:styles>
@@ -44,57 +57,32 @@
                 <p>Instrumentos e acessórios de qualidade para sua jornada musical.</p>
             </div>
 
+
             <div class="loja-grid">
+                @foreach($itens as $item)
+                    <div class="produto-card-loja">
+                        @php
+                            $img = collect($itens_imagens)->firstWhere('id_product', $item['id_product']);
+                        @endphp
 
-                <div class="produto-card-loja">
-                    <a  href="{{ route('lojaproduto') }}">
                         <div class="produto-imagem-container">
-                            <img src="{{ asset('imagens/violaolaranja.jpeg') }}" alt="Violão Clássico Acústico">
+                            @if($img)
+                                <img src="{{ asset('storage/' . $img['image_url']) }}" alt="$img['name']">
+                            @else
+                                <img src="https://via.placeholder.com/300" alt="Imagem indisponível">
+                            @endif
                         </div>
-                        <div class="produto-info-loja">
-                            <h3 class="produto-nome">Violão Clássico Acústico</h3>
-                            <p class="produto-preco">R$ 459,00</p>
-                        </div>
-                    </a>
-                </div>
 
-                <div class="produto-card-loja">
-                    <a  href="{{ route('lojaproduto') }}">
-                        <div class="produto-imagem-container">
-                            <img src="{{ asset('imagens/pandeiro.webp') }}" alt="Pandeiro Profissional de Couro">
-                        </div>
                         <div class="produto-info-loja">
-                            <h3 class="produto-nome">Pandeiro Profissional de Couro</h3>
-                            <p class="produto-preco">R$ 219,00</p>
+                            <h3 class="produto-nome">{{ $item['name'] }}</h3>
+                            <p class="produto-preco">R$ {{ number_format($item['price'], 2, ',', '.') }}</p>
+                            <a href="{{ route('lojaproduto', $item['id_product']) }}">Ver mais</a>
                         </div>
-                    </a>
-                </div>
-
-                <div class="produto-card-loja">
-                    <a  href="{{ route('lojaproduto') }}">
-                        <div class="produto-imagem-container">
-                            <img src="{{ asset('imagens/tecladomusical.webp') }}" alt="Teclado Musical Iniciante">
-                        </div>
-                        <div class="produto-info-loja">
-                            <h3 class="produto-nome">Teclado Musical Iniciante</h3>
-                            <p class="produto-preco">R$ 780,00</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="produto-card-loja">
-                    <a  href="{{ route('lojaproduto') }}">
-                        <div class="produto-imagem-container">
-                            <img src="{{ asset('imagens/akulele.webp') }}" alt="Ukulele Soprano Acústico">
-                        </div>
-                        <div class="produto-info-loja">
-                            <h3 class="produto-nome">Ukulele Soprano Acústico</h3>
-                            <p class="produto-preco">R$ 350,00</p>
-                        </div>
-                    </a>
-                </div>
-                
+                    </div>
+                @endforeach
             </div>
-            </div>
+
+
+        </div>
 
 </x-layout>

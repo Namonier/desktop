@@ -26,8 +26,8 @@ class GalleryImage extends Model
     /**
      * Define o relacionamento onde a Imagem da Galeria pertence a um Evento.
      */
-    public function event(): BelongsTo
+    public function event()
     {
-        return $this->belongsTo(Event::class, 'id_event', 'id_event');
+        return $this->belongsTo(\App\Models\Event::class, 'id_event');
     }
 }

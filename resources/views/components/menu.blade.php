@@ -17,7 +17,7 @@
             <li><a class="{{ request()->routeIs('parceiros') ? 'menu-ativo' : '' }}" href="{{ route('parceiros') }}">Parceiros</a></li>
             <li><a class="{{ request()->routeIs('servicos') ? 'menu-ativo' : '' }}" href="{{ route('servicos') }}">Serviços</a></li>
             <li><a class="{{ request()->routeIs('sobre') ? 'menu-ativo' : '' }}" href="{{ route('sobre') }}">Sobre</a></li>
-            <li><a class="{{ request()->routeIs('youtube') ? 'menu-ativo' : '' }}" href="{{ route('youtube') }}">Youtube</a></li>
+            <li><a href="https://www.youtube.com/c/CasadoPianoMossor%C3%B3">Youtube</a></li>
         </ul>
     </nav>
     <header class="cabecalho-mobile">

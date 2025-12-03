@@ -157,31 +157,15 @@
             </div>
 
             <div class="parceiros-grid">
-
-                <div class="parceiro-card">
-                    <div class="parceiro-info">
-                        <h3>Luteria Artesanal Silva</h3>
-                        <p>Nosso parceiro oficial para reparos, manutenção e customização de instrumentos de corda, garantindo a melhor qualidade para nossos clientes e alunos.</p>
-                        <a  href="#" class="parceiro-btn">Visitar Site</a>
+                @foreach($parceiros as $parceiro)
+                    <div class="parceiro-card">
+                        <div class="parceiro-info">
+                            <h3>{{ $parceiro['name'] }}</h3>
+                            <p>{{ $parceiro['description'] }}</p>
+                            <a  href="{{ $parceiro['website_url'] }}" class="parceiro-btn">Visitar Site</a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="parceiro-card">
-                    <div class="parceiro-info">
-                        <h3>Estúdio de Gravação Som Puro</h3>
-                        <p>O local onde nossos alunos e artistas locais podem gravar suas músicas com qualidade profissional. Oferecem descontos especiais para a comunidade da Casa do Piano.</p>
-                        <a  href="#" class="parceiro-btn">Visitar Site</a>
-                    </div>
-                </div>
-
-                <div class="parceiro-card">
-                    <div class="parceiro-info">
-                        <h3>Café Cultural Melodia</h3>
-                        <p>Um espaço aconchegante que sedia nossos recitais menores e saraus, unindo a paixão pelo café com o amor pela música ao vivo.</p>
-                        <a  href="#" class="parceiro-btn">Visitar Site</a>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
             
             <section class="cta-secao">

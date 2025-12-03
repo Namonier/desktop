@@ -95,35 +95,27 @@
         </div>
 
         <div class="cursos-grid">
+    
+            @if(empty($curso_tipos))
+                <p>Nenhum curso encontrado nesta categoria.</p>
+            @else
+                @foreach($curso_tipos as $curso_tipo)
+                    <div class="curso-card">
+                        <div class="curso-card-conteudo">
+                            <h3>{{ $curso_tipo['title'] }}</h3>
+                            <h5>{{ $curso_tipo['modality'] }}</h5>
+                            <p>{{ $curso_tipo['description'] }}</p>
 
-            <div class="curso-card">
-                <div class="curso-card-conteudo">
-                    <h3>Curso de Violão</h3>
-                    <h5>Presencial e EAD</h5>
-                    <p>Aprenda a tocar violão do zero, passando pelos ritmos populares, acordes e técnicas para tocar suas músicas favoritas.</p>
-                    <a  href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
-                </div>
-            </div>
+                            <a href="{{ route('cursosdescricao', $curso_tipo['id_courses']) }}" class="curso-btn">
+                                Saiba Mais
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
 
-            <div class="curso-card">
-                <div class="curso-card-conteudo">
-                    <h3>Curso de Teclado</h3>
-                    <h5>Presencial e EAD</h5>
-                    <p>Explore o universo das teclas, aprendendo harmonia, melodia e acompanhamentos para diversos estilos musicais.</p>
-                    <a  href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
-                </div>
-            </div>
-
-            <div class="curso-card">
-                <div class="curso-card-conteudo">
-                    <h3>Curso de Piano</h3>
-                    <h5>Presencial e EAD</h5>
-                    <p>Do clássico ao popular, desenvolva sua técnica e expressividade no mais completo dos instrumentos com nosso método exclusivo.</p>
-                    <a  href="{{ route('cursosdescricao') }}" class="curso-btn">Ver Detalhes do Curso</a>
-                </div>
-            </div>
-            
         </div>
+
 
     </div>
 </x-layout>

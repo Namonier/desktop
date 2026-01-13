@@ -83,11 +83,47 @@
             .curso-btn:hover {
                 background-color: var(--cor-secundaria);
             }
+            .btn-voltar {
+                position: fixed;
+                top: 90px; /* ajusta conforme seu header */
+                left: 20px;
+                width: 46px;
+                height: 46px;
+                border-radius: 12px;
+                background-color: #ffffff;
+                color: #8a2be2; /* roxo do site */
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+                transition: all 0.25s ease;
+                z-index: 1000;
+            }
+
+            .btn-voltar:hover {
+                background-color: #8a2be2;
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 12px 24px rgba(138, 43, 226, 0.35);
+            }
+
+            .btn-voltar:active {
+                transform: scale(0.95);
+            }
 
         </style>
     </x-slot:styles>
 
     <div class="main-container">
+    <button id="voltar-btn" class="btn-voltar" aria-label="Voltar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+
 
         <div class="pagina-cabecalho">
             <h1>Nossos Cursos de Música</h1>

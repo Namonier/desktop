@@ -5,6 +5,10 @@ use App\Models\Course;
 use App\Models\Teacher;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\GalleryImage;
+use App\Models\Event;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 
 
@@ -19,7 +23,16 @@ Route::get('/', function () {
     //Extract the video ID from the link:
     $id_youtube_video = (string) explode('=',$entries->link['href'])[1];
     //dd($link);
-    return view('inicial', compact('id_youtube_video'));
+    $ultimos_produtos = \App\Models\Product::latest()
+    ->take(2)
+    ->whereHas('images', function($query) {
+        $query->where('is_home', 1);
+    })
+    ->with(['images' => function($query) {
+        $query->where('is_home', 1);
+    }])
+    ->get();
+    return view('inicial', compact('id_youtube_video', 'ultimos_produtos'));
 })->name('inicial');
 
 Route::get('/loja', function () {
@@ -62,19 +75,44 @@ Route::get('/curso-tipo-descricao/{id}', function ($id) {
     return view('cursosdescricao', compact('curso', 'categoria'));
 })->name('cursosdescricao');
 
+Route::get('/galeria', function () {
+    
+    $imagensGerais = GalleryImage::whereNull('id_event')->get();
 
-Route::get('/imagens-galeria', function () {
-    return view('galeria');
+    $imagensEventos = GalleryImage::whereNotNull('id_event')->get();
+
+    return view('galeria', compact('imagensGerais', 'imagensEventos'));
 })->name('galeria');
 
-Route::get('/agenda-cultural', function () {
-    $agenda_cultural = \App\Models\Event::all()->toArray(); 
-    return view('agendacultural', compact('agenda_cultural'));
+//Rota para o (Menu)
+Route::get('/agenda-cultural', function (Request $request) {
+
+    $query = Event::query();
+
+    if ($request->filled('mesAno')) {
+        $data = $request->input('mesAno');
+        
+        $ano = substr($data, 0, 4); // Pega os 4 primeiros dígitos
+        $mes = substr($data, 5, 2); // Pega os 2 dígitos do mês
+
+        $query->whereYear('event_datetime', $ano)
+              ->whereMonth('event_datetime', $mes);
+    }
+
+    $eventos = $query->orderBy('event_datetime', 'asc')->get();
+
+    return view('agendacultural', compact('eventos'));
+})->name('agendacultural.menu');
+
+
+Route::get('/agenda-cultural/{id}', function ($id) {
+    $eventos = Event::with('galleryImages')->findOrFail($id);
+    return view('agendacultural', compact('evento'));
 })->name('agendacultural');
 
 Route::get('/agenda-cultural-descricao', function () {
-    $agenda_cultural = \App\Models\Event::all()->toArray();
-    return view('agendadescricao', compact('agenda_cultural'));
+    $eventos = \App\Models\Event::all()->toArray();
+    return view('agendadescricao', compact('eventos'));
 })->name('agendadescricao');
 
 Route::get('/parcerias', function () {

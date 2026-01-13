@@ -51,7 +51,9 @@ class ProductImageResource extends Resource
         return $table
             ->recordTitleAttribute('Produto_imagem')
             ->columns([
-                ImageColumn::make('image_url'),
+                ImageColumn::make('image_url')
+                    ->disk('public')
+                    ->label('Imagem'),
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('is_home')

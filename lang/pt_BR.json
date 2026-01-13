@@ -195,7 +195,16 @@
   "Log in to your account": "Entrar na sua conta",
   "Enter your email and password below to log in": "Digite seu e-mail e senha abaixo para entrar",
   "Don't have an account?": "Não tem uma conta?",
-  "Title": "titulo",
-  "Price": "preço",
-  "Description": "descrição"
+  "Title": "Titulo",
+  "Price": "Preço",
+  "Description": "Descrição",
+  "Description long": "Descrição longa",
+  "Description short": "Descrição curta",
+  "Event datetime": "hora do evento",
+  "Address": "Endereço",
+  "Location": "Localização",
+  "Modality": "Modalidade",
+  "Duration": "Duração",
+  "id product": "Id Produto",
+  "Courses": "Cursos"
 }

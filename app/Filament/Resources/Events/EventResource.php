@@ -9,10 +9,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
@@ -20,6 +17,8 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\FileUpload;
 
 class EventResource extends Resource
 {
@@ -29,47 +28,61 @@ class EventResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Evento';
 
+    protected static ?string $modelLabel = 'Evento';
+
     public static function form(Schema $schema): Schema
-{
-    return $schema
-        ->components([
+    {
+        return $schema
+            ->components([
 
-            TextInput::make('title')
-                ->required(),
+                TextInput::make('title')
+                    ->required(),
 
-            TextInput::make('address')
-                ->required(),
+                TextInput::make('address')
+                    ->required(),
 
-            Textarea::make('description')
-                ->required()
-                ->columnSpanFull(),
+                Textarea::make('description')
+                    ->required()
+                    ->columnSpanFull(),
 
-            DateTimePicker::make('event_datetime')
-                ->required(),
+                Textarea::make('description_long')
+                    ->required()
+                    ->columnSpanFull(),
 
-            TextInput::make('location')
-                ->required(),
+                DateTimePicker::make('event_datetime')
+                    ->required(),
 
-            // 🔥 AQUI entra o Repeater da Galeria
-            Repeater::make('galleryImages')
-                ->relationship()
-                ->minItems(0) // não obrigatório
-                ->schema([
+                TextInput::make('price')
+                    ->label('Preço')
+                    ->numeric()
+                    ->nullable()
+                    ->prefix('R$'),
 
-                    FileUpload::make('image_url')
-                        ->label('Imagem')
-                        ->directory('gallery')
-                        ->image(),
+                TextInput::make('location')
+                    ->required(),
 
-                    TextInput::make('description')
-                        ->label('Descrição da imagem')
-                        ->maxLength(200),
+                Repeater::make('galleryImages')
+                    ->relationship()
+                    ->minItems(0)
+                    ->schema([
+                        FileUpload::make('image_url')
+                            ->label('Imagem')
+                            ->directory('galeria')
+                            ->disk('public')
+                            ->visibility('public')
+                            ->image(),
 
-                ])
-                ->columnSpanFull(),
+                        TextInput::make('description')
+                            ->label('Descrição da imagem')
+                            ->maxLength(200),
+                    ])
+                    ->columnSpanFull(),
 
-        ]);
-}
+            ]);
+    }
+
+
+
 
     public static function table(Table $table): Table
     {
@@ -93,6 +106,9 @@ class EventResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                //
             ])
             ->recordActions([
                 EditAction::make(),

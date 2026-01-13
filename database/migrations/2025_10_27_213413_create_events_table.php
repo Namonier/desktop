@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('description');
             $table->timestamp('event_datetime');
             $table->string('location', 100);
+            $table->longText('description_long');
+            $table->decimal('price', 10, 2)->nullable();
             $table->timestamps();
         });
     }

@@ -30,4 +30,5 @@ class GalleryImage extends Model
     {
         return $this->belongsTo(\App\Models\Event::class, 'id_event');
     }
+    
 }

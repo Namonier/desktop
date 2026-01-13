@@ -20,7 +20,11 @@ class Course extends Model
         'description',
         'duration',
         'id_categories',
+        'description_long',
+        'description_short',
     ];
+    
+    
 
     /**
      * Define o relacionamento onde o Curso pertence a uma Categoria.

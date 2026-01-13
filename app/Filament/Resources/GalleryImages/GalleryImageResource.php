@@ -25,6 +25,9 @@ class GalleryImageResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Galeria Imagem';
+    
+    protected static ?string $modelLabel = 'Galeria Imagens';
+
 
     public static function form(Schema $schema): Schema
     {
@@ -32,11 +35,11 @@ class GalleryImageResource extends Resource
             ->components([
                 FileUpload::make('image_url')
                     ->image()
+                    ->directory('galeria')
+                    ->disk('public')
                     ->required(),
                 TextInput::make('description')
                     ->required(),
-                TextInput::make('id_event')
-                    ->numeric(),
             ]);
     }
 
@@ -45,7 +48,9 @@ class GalleryImageResource extends Resource
         return $table
             ->recordTitleAttribute('Galeria Imagem')
             ->columns([
-                ImageColumn::make('image_url'),
+                ImageColumn::make('image_url')
+                    ->disk('public')
+                    ->label('Imagem'),
                 TextColumn::make('description')
                     ->searchable(),
                 TextColumn::make('id_event')
@@ -80,4 +85,6 @@ class GalleryImageResource extends Resource
             'index' => ManageGalleryImages::route('/'),
         ];
     }
+
+
 }

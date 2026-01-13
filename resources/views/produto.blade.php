@@ -74,8 +74,45 @@
             @media (min-width: 1024px) {
                 .produto-detalhe-container { grid-template-columns: 1fr 1fr; gap: 3rem; }
             }
+            .btn-voltar {
+                position: fixed;
+                top: 90px; /* ajusta conforme seu header */
+                left: 20px;
+                width: 46px;
+                height: 46px;
+                border-radius: 12px;
+                background-color: #ffffff;
+                color: #8a2be2; /* roxo do site */
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+                transition: all 0.25s ease;
+                z-index: 1000;
+            }
+
+            .btn-voltar:hover {
+                background-color: #8a2be2;
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 12px 24px rgba(138, 43, 226, 0.35);
+            }
+
+            .btn-voltar:active {
+                transform: scale(0.95);
+            }
+            
         </style>
     </x-slot:styles>
+    <button id="voltar-btn" class="btn-voltar" aria-label="Voltar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+
 
     <div class="main-container">
         
@@ -128,33 +165,10 @@
                     </a>
 
                     <div class="produto-descricao-detalhada">
-                        <h3>Detalhes do Produto</h3>
 
-                        @php
-                            $linhas = preg_split('/\r\n|\r|\n/', $item['description_long']);
-                        @endphp
+                        {!! $item['description_long']  !!}
 
-                        <ul>
-                        @foreach ($linhas as $linha)
-                            @php
-                                if (preg_match('/^\s*(.*?)\s*[:;,]\s*(.*)$/', $linha, $m)) {
-                                    $left = $m[1];
-                                    $right = $m[2];
-                                } else {
-                                    $left = null;
-                                    $right = $linha;
-                                }
-                            @endphp
-
-                            <li>
-                                @if ($left)
-                                    <strong>{{ $left }}:</strong> {{ $right }}
-                                @else
-                                    {{ $right }}
-                                @endif
-                            </li>
-                        @endforeach
-                        </ul>
+                        
                     </div>
 
                 </div>

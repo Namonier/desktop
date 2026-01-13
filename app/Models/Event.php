@@ -12,14 +12,21 @@ class Event extends Model
 
     protected $primaryKey = 'id_event';
     public $timestamps = true;
+    public $incrementing = true;
+    protected $keyType = 'int';
+
 
     protected $fillable = [
         'title',
         'address',
         'description',
+        'description_long',
+        'price',
         'event_datetime',
         'location',
     ];
+    
+    
 
     /**
      * Define o relacionamento onde um Evento tem muitas Imagens de Galeria.
@@ -28,5 +35,6 @@ class Event extends Model
     {
         return $this->hasMany(\App\Models\GalleryImage::class, 'id_event');
     }
+
     
 }

@@ -142,7 +142,6 @@
 
         <div class="pagina-cabecalho">
             <h1>Sobre Nós</h1>
-            <p>Mais que uma loja, um ponto de encontro para a música.</p>
         </div>
 
         <div class="sobre-container">

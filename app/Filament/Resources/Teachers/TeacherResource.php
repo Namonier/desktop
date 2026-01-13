@@ -17,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
 
 
 class TeacherResource extends Resource
@@ -27,6 +28,8 @@ class TeacherResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Professores';
 
+    protected static ?string $modelLabel = 'Professores';
+
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -35,13 +38,16 @@ class TeacherResource extends Resource
                     ->required(),
                 TextInput::make('name')
                     ->required(),
-                FileUpload::make('foto')
+                FileUpload::make('photo')
                     ->label('Foto')
                     ->image()
-                    ->directory('teachers')
+                    ->disk('public')
+                    ->directory('professores') // Salva na pasta storage/app/public/
+                    ->visibility('public')
                     ->openable()
                     ->downloadable()
-                    ->nullable(),                
+                    ->nullable()
+                    ->required(),                
                 Select::make('courses')
                     ->multiple()
                     ->relationship(titleAttribute: 'title')
@@ -57,8 +63,9 @@ class TeacherResource extends Resource
                     ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('photo')
-                    ->searchable(),
+                ImageColumn::make('photo')
+                    ->disk('public')
+                    ->label('Imagem'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

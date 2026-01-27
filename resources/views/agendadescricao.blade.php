@@ -196,7 +196,7 @@
             </div>
 
             <div class="btn-container">
-                <a href="https://wa.me/5588987379538?text=Ol%C3%A1!%20Vi%20o%20evento%20{{ urlencode($evento['title'] ?? '') }}%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="btn-ingresso">Fale Conosco</a>
+                <a href="https://wa.me/55{{ $telefone }}?text=Ol%C3%A1!%20Vi%20o%20evento%20{{ urlencode($evento['title'] ?? '') }}%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="btn-ingresso">Fale Conosco</a>
             </div>
 
             <div class="evento-conteudo">

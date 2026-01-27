@@ -1,66 +1,61 @@
 <?php
 
-namespace App\Filament\Resources\ProductImages;
+namespace App\Filament\Resources\Sobres;
 
-use App\Filament\Resources\ProductImages\Pages\ManageProductImages;
-use App\Models\ProductImage;
+use App\Filament\Resources\Sobres\Pages\ManageSobres;
+use App\Models\Sobre;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\ToggleColumn;
 
-class ProductImageResource extends Resource
+class SobreResource extends Resource
 {
-    protected static ?string $model = ProductImage::class;
+    protected static ?string $model = Sobre::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Produto_imagem';
-
-    protected static ?string $modelLabel = 'Imagem Produto';
+    protected static ?string $recordTitleAttribute = 'sobre';
 
     public static function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                FileUpload::make('image_url')
-                    ->image()
-                    ->disk('public')
-                    ->directory('produtos') // Salva na pasta storage/app/public/produtos
-                    ->visibility('public')
-                    ->required(),
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('is_home')
+                Textarea::make('texto')
                     ->required()
-                    ->numeric(),
+                    ->columnSpanFull(),
+                TextInput::make('endereco')
+                    ->required(),
+                TextInput::make('email')
+                    ->label('Email address')
+                    ->email()
+                    ->required(),
+                TextInput::make('telefone')
+                    ->tel()
+                    ->required(),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('Produto_imagem')
+            ->recordTitleAttribute('sobre')
             ->columns([
-                ImageColumn::make('image_url')
-                    ->disk('public')
-                    ->label('Imagem'),
-                TextColumn::make('title')
+                TextColumn::make('endereco')
                     ->searchable(),
-                ToggleColumn::make('is_home'),
-                TextColumn::make('id_product')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('email')
+                    ->label('Email address')
+                    ->searchable(),
+                TextColumn::make('telefone')
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -87,7 +82,7 @@ class ProductImageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ManageProductImages::route('/'),
+            'index' => ManageSobres::route('/'),
         ];
     }
 }

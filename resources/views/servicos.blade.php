@@ -142,7 +142,7 @@
             <section class="cta-secao">
                 <h2>Pronto para adicionar música ao seu evento?</h2>
                 <p>Entre em contato conosco para um orçamento personalizado e sem compromisso.</p>
-                <a  href="https://wa.me/5588987379538?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os." class="cta-botao">Solicitar Orçamento</a>
+                <a  href="https://wa.me/55{{ $telefone }}?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os." class="cta-botao">Solicitar Orçamento</a>
             </section>
 
         </div>

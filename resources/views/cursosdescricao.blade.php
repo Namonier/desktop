@@ -91,7 +91,7 @@
                     <div><strong>Nível:</strong> {{ $curso->category->title ?? 'Sem categoria' }}
                     </div>
                 </div>
-                <a href="https://wa.me/5584987379538?text=Ol%C3%A1,%20gostaria%20de%20participar%20de%20um%20curso%20com%20voc%C3%AAs!" target="_blank" class="btn-inscricao">Inscreva-se pelo WhatsApp</a>
+                <a href="https://wa.me/55{{ $telefone }}?text=Ol%C3%A1,%20gostaria%20de%20participar%20de%20um%20curso%20com%20voc%C3%AAs!" target="_blank" class="btn-inscricao">Inscreva-se pelo WhatsApp</a>
             </aside>
 
             <div class="curso-conteudo">

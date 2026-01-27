@@ -171,7 +171,7 @@
             <section class="cta-secao">
                 <h2>Quer ser nosso parceiro?</h2>
                 <p>Se sua empresa compartilha da nossa paixão pela cultura e pela música, entre em contato e vamos conversar sobre como podemos colaborar.</p>
-                <a  href="https://wa.me/5584987379538?text=Ol%C3%A1,%20gostaria%20de%20fazer%20uma%20parceria%20com%20voc%C3%AAs!" class="cta-botao">Entre em Contato</a>
+                <a  href="https://wa.me/55{{ $telefone }}?text=Ol%C3%A1,%20gostaria%20de%20fazer%20uma%20parceria%20com%20voc%C3%AAs!" class="cta-botao">Entre em Contato</a>
             </section>
 
         </div>

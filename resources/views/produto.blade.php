@@ -160,7 +160,7 @@
                     
                     <p class="produto-descricao-curta">{{ $item['description_short'] }}</p>
                     
-                    <a href="https://wa.me/5584987379538?text=Olá,%20tenho%20interesse%20no%20produto:%20{{ $item['name'] }}" class="btn-comprar" target="_blank">
+                    <a href="https://wa.me/55{{ $telefone }}?text=Olá,%20tenho%20interesse%20no%20produto:%20{{ $item['name'] }}" class="btn-comprar" target="_blank">
                         Tenho Interesse
                     </a>
 

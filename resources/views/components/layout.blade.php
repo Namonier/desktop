@@ -273,9 +273,9 @@
 
     <footer class="rodape">
         <p><strong>Casa do Piano - Mossoró</strong></p>
-        <p>Rua Joaquim Bruno Mota, 58 Bairro Abolição, Mossoró</p>
-        <p>Email: casadopianomossoro@gmail.com</p>
-        <p>WhatsApp: (84) 98737-9538</p>
+        <p>{{ $endereco }}</p>
+        <p>Email: {{ $email }}</p>
+        <p>WhatsApp: {{ $telefone }}</p>
     </footer>
 
     <script>
